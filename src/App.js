@@ -1,10 +1,11 @@
-import React, { useEffect, useContext } from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import Signup from './Components/Signup/Signup';
-import Login from './Components/Login/Login';
-import Home from './Pages/Home';
-import Create from './Pages/Create'
-import { AuthContext } from './store/FirebaseContext';
+import React, { useEffect, useContext } from "react";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import Signup from "./Components/Signup/Signup";
+import Login from "./Components/Login/Login";
+import Home from "./Pages/Home";
+import Create from "./Pages/Create";
+import View from "./Pages/ViewPost"
+import { AuthContext } from "./store/FirebaseContext";
 
 function App() {
   const { user } = useContext(AuthContext);
@@ -20,7 +21,7 @@ function App() {
         <Route exact path="/signup" component={Signup} />
         <Route exact path="/login" component={Login} />
         <Route exact path="/Create" component={Create} />
-
+        <Route exact path="/View" component={View} />
       </Switch>
     </Router>
   );

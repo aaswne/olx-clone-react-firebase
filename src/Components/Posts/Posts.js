@@ -2,9 +2,11 @@ import React, { useState, useEffect } from 'react';
 import Heart from '../../assets/Heart';
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "../../firebase/config";
+import { useHistory } from 'react-router-dom'
 import './Post.css';
 
 function Posts() {
+  const history = useHistory();
 
   const [products, setProducts] = useState([]);
 
@@ -39,12 +41,14 @@ function Posts() {
         <div className="cards">
 
           {products.map((item) => (
-            <div className="card" key={item.id}>
+            <div onClick={()=>{
+              history.push('/View')
+            }} className="card" key={item.id}>
               <div className="favorite">
                 <Heart />
               </div>
               <div className="image">
-                <img src={item.url} alt="" />
+                <img src={item.imageUrl} alt="" />
               </div>
               <div className="content">
                 <p className="rate">&#x20B9;{item.price}</p>
@@ -56,6 +60,11 @@ function Posts() {
               </div>
             </div>
           ))}
+
+
+
+
+          
 
         </div>
       </div>
