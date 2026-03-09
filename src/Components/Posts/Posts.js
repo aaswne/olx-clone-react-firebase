@@ -1,11 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect ,useContext} from 'react';
 import Heart from '../../assets/Heart';
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "../../firebase/config";
 import { useHistory } from 'react-router-dom'
+import { AuthContext } from '../../store/FirebaseContext';
 import './Post.css';
 
 function Posts() {
+
+  const {user} = useContext(AuthContext)
   const history = useHistory();
 
   const [products, setProducts] = useState([]);
@@ -42,7 +45,7 @@ function Posts() {
 
           {products.map((item) => (
             <div onClick={()=>{
-              history.push('/View')
+             user? history.push('/View'):alert("you need to login");history.push('/login')
             }} className="card" key={item.id}>
               <div className="favorite">
                 <Heart />
