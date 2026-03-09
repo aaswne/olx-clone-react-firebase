@@ -1,16 +1,28 @@
-import React from 'react';
-import './App.css';
-
-/**
- * ?  =====Import Components=====
- */
+import React, { useEffect, useContext } from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import Signup from './Components/Signup/Signup';
+import Login from './Components/Login/Login';
 import Home from './Pages/Home';
+import Create from './Pages/Create'
+import { AuthContext } from './store/FirebaseContext';
 
 function App() {
+  const { user } = useContext(AuthContext);
+
+  useEffect(() => {
+    console.log("App user:", user);
+  }, [user]);
+
   return (
-    <div>
-      <Home />
-    </div>
+    <Router>
+      <Switch>
+        <Route exact path="/" component={Home} />
+        <Route exact path="/signup" component={Signup} />
+        <Route exact path="/login" component={Login} />
+        <Route exact path="/Create" component={Create} />
+
+      </Switch>
+    </Router>
   );
 }
 
