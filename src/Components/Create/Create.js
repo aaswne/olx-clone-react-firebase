@@ -4,10 +4,9 @@ import Header from '../Header/Header';
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { collection, addDoc } from "firebase/firestore";
 import { storage, db } from "../../firebase/config";
-import { FirebaseContext, AuthContext } from "../../store/FirebaseContext";
+import {  AuthContext } from "../../store/FirebaseContext";
 
 const Create = () => {
-  const { firebase } = useContext(FirebaseContext);
   const { user } = useContext(AuthContext);
 
 

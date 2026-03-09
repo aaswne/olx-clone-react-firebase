@@ -12,16 +12,16 @@ export default function Login() {
   const [password, setPassword] = useState('');
 
   const submit = async (e) => {
-    e.preventDefault();
+  e.preventDefault();
 
-    try {
-      const result = await signInWithEmailAndPassword(auth, email, password);
-      history.push('/');
-    } catch (error) {
-      console.error('Login error:', error.message);
-      alert(error.message);
-    }
-  };
+  try {
+    await signInWithEmailAndPassword(auth, email, password);
+    history.push('/');
+  } catch (error) {
+    console.error('Login error:', error.message);
+    alert(error.message);
+  }
+};
 
   return (
     <div>
