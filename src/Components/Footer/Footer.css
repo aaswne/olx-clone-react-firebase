@@ -1,13 +1,19 @@
 .footerParentDiv {
-  width: 100vw;
+  width: 100%;
+  box-sizing: border-box;
 }
+
 .footerParentDiv .content {
   display: flex;
   justify-content: space-between;
   align-items: center;
   background: #ebeeef;
   padding: 16px;
+  gap: 16px;
+  flex-wrap: wrap;
+  box-sizing: border-box;
 }
+
 .footerParentDiv .content .heading {
   font-size: 24px;
   font-weight: bolder;
@@ -17,11 +23,52 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px;
+  padding: 10px 16px;
   background: #002f34;
   color: whitesmoke;
+  gap: 10px;
+  flex-wrap: wrap;
+  box-sizing: border-box;
 }
 
 .footerParentDiv .footer p {
   margin: 0;
+}
+
+/* Tablet */
+@media (max-width: 768px) {
+  .footerParentDiv .content {
+    padding: 14px;
+  }
+
+  .footerParentDiv .content .heading {
+    font-size: 20px;
+  }
+
+  .footerParentDiv .footer {
+    padding: 10px 14px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+  .footerParentDiv .content {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 12px;
+  }
+
+  .footerParentDiv .content .heading {
+    font-size: 18px;
+  }
+
+  .footerParentDiv .footer {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 12px;
+  }
+
+  .footerParentDiv .footer p {
+    font-size: 14px;
+  }
 }

@@ -3,6 +3,7 @@
   padding: 16px 16px 32px;
   background-color: #ebeeef;
   border-radius: 4px;
+  box-sizing: border-box;
 }
 
 .heading {
@@ -10,7 +11,10 @@
   justify-content: space-between;
   align-items: center;
   width: 100%;
+  gap: 10px;
+  flex-wrap: wrap;
 }
+
 .heading :first-child {
   font-size: 24px;
   color: #002f34;
@@ -21,24 +25,45 @@
   color: #002f34;
 }
 
+.recommendations {
+  margin: 16px 16px 24px;
+  box-sizing: border-box;
+}
+
+.recommendations .heading span {
+  font-size: 24px;
+  color: #002f34;
+}
+
 .recommendations .cards {
   display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
 }
 
 .moreView .cards {
+  display: flex;
+  gap: 15px;
   white-space: nowrap;
-  overflow-x: scroll;
+  overflow-x: auto;
   overflow-y: hidden;
+  scroll-behavior: smooth;
+  padding-bottom: 10px;
 }
 
 .card {
-  margin-right: 15px;
+  margin-right: 0;
   padding: 13px;
   max-width: 222px;
   width: 222px;
+  min-width: 222px;
   height: 270px;
   display: inline-block;
   cursor: pointer;
+  box-sizing: border-box;
+  background: white;
+  border-radius: 6px;
+  flex-shrink: 0;
 }
 
 .card .favorite {
@@ -51,6 +76,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 100%;
 }
 
 .card .image img {
@@ -58,30 +84,105 @@
   max-width: 100%;
   max-height: 100%;
   min-height: 100%;
+  object-fit: contain;
   text-align: center;
 }
+
 .card .content .rate {
   margin-top: 10px;
   font-size: larger;
   font-weight: bold;
 }
+
 .card .content .kilometer {
   font-size: medium;
 }
+
 .card .content .name {
   font-size: small;
 }
+
 .card .date {
   display: flex;
   justify-content: flex-end;
   font-size: small;
 }
 
-.recommendations {
-  margin: 16px 16px 24px;
+/* Tablet */
+@media (max-width: 768px) {
+  .moreView,
+  .recommendations {
+    margin: 12px;
+    padding: 12px;
+  }
+
+  .heading :first-child,
+  .recommendations .heading span {
+    font-size: 20px;
+  }
+
+  .heading :last-child {
+    font-size: 13px;
+  }
+
+  .card {
+    width: 180px;
+    min-width: 180px;
+    max-width: 180px;
+    height: 250px;
+    padding: 10px;
+  }
+
+  .card .image img {
+    height: 90px;
+  }
 }
 
-.recommendations .heading span {
-  font-size: 24px;
-  color: #002f34;
+/* Mobile */
+@media (max-width: 480px) {
+  .moreView,
+  .recommendations {
+    margin: 8px;
+    padding: 10px;
+  }
+
+  .heading {
+    align-items: flex-start;
+  }
+
+  .heading :first-child,
+  .recommendations .heading span {
+    font-size: 18px;
+  }
+
+  .heading :last-child {
+    font-size: 12px;
+  }
+
+  .moreView .cards,
+  .recommendations .cards {
+    gap: 10px;
+  }
+
+  .card {
+    width: 160px;
+    min-width: 160px;
+    max-width: 160px;
+    height: 230px;
+    padding: 8px;
+  }
+
+  .card .image img {
+    height: 80px;
+  }
+
+  .card .content .rate {
+    font-size: 16px;
+  }
+
+  .card .content .kilometer,
+  .card .content .name,
+  .card .date {
+    font-size: 12px;
+  }
 }

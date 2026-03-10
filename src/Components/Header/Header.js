@@ -4,7 +4,7 @@ import Search from '../../assets/Search';
 import Arrow from '../../assets/Arrow';
 import SellButton from '../../assets/SellButton';
 import SellButtonPlus from '../../assets/SellButtonPlus';
-import { useContext, useEffect } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../store/FirebaseContext';
 import { signOut } from 'firebase/auth';
 import { auth } from '../../firebase/config';
@@ -13,6 +13,7 @@ import { useHistory } from 'react-router-dom';
 function Header() {
   const { user } = useContext(AuthContext);
   const history = useHistory();
+  const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
     console.log('Header user:', user);
@@ -34,12 +35,6 @@ function Header() {
           <OlxLogo />
         </div>
 
-        <div className="placeSearch">
-          <Search />
-          <input type="text" />
-          <Arrow />
-        </div>
-
         <div className="productSearch">
           <div className="input">
             <input
@@ -52,37 +47,122 @@ function Header() {
           </div>
         </div>
 
-        <div className="language">
+        <div className="desktopOnly placeSearch">
+          <Search />
+          <input type="text" />
+          <Arrow />
+        </div>
+
+        <div className="desktopOnly language">
           <span> ENGLISH </span>
           <Arrow />
         </div>
 
-        <div className="loginPage">
-          <span onClick={()=>{
-            if(!user){
-              history.push('/login')
-            }
-          }} >{user ? user.displayName || user.email : 'Login'}</span>
+        <div className="desktopOnly loginPage">
+          <span
+            onClick={() => {
+              if (!user) {
+                history.push('/login');
+              }
+            }}
+          >
+{user ? `Welcome ${user.displayName || user.email}` : 'Login'}          </span>
           <hr />
         </div>
 
-        {user && <span onClick={handleLogout}>Logout</span>}
+        {user && (
+          <span className="desktopOnly logoutBtn" onClick={handleLogout}>
+            Logout
+          </span>
+        )}
 
-        <div onClick={()=>{
-              if(user){
-                history.push('/create')
-              }else{
-                alert("you need to login first")
-                history.push('/login')
-              }
-            }}  className="sellMenu">
+        <div
+          onClick={() => {
+            if (user) {
+              history.push('/create');
+            } else {
+              alert('you need to login first');
+              history.push('/login');
+            }
+          }}
+          className="desktopOnly sellMenu"
+        >
           <SellButton />
           <div className="sellMenuContent">
             <SellButtonPlus />
             <span>SELL</span>
           </div>
         </div>
+
+        <button
+          className="mobileMenuBtn"
+          onClick={() => setMenuOpen(!menuOpen)}
+        >
+          ☰
+        </button>
       </div>
+
+      <div className="mobilePlaceWrapper">
+        <div className="placeSearch mobilePlaceSearch">
+          <Search />
+          <input type="text" placeholder="Search city, area or locality" />
+          <Arrow />
+        </div>
+      </div>
+
+      {menuOpen && (
+        <div className="mobileMenu">
+          <div className="mobileMenuItem language">
+            <span> ENGLISH </span>
+            <Arrow />
+          </div>
+
+          <div className="mobileMenuItem loginPage">
+            <span
+              onClick={() => {
+                if (!user) {
+                  history.push('/login');
+                  setMenuOpen(false);
+                }
+              }}
+            >
+              {user ? user.displayName || user.email : 'Login'}
+            </span>
+            <hr />
+          </div>
+
+          {user && (
+            <div
+              className="mobileMenuItem logoutBtn"
+              onClick={() => {
+                handleLogout();
+                setMenuOpen(false);
+              }}
+            >
+              Logout
+            </div>
+          )}
+
+          <div
+            onClick={() => {
+              if (user) {
+                history.push('/create');
+              } else {
+                alert('you need to login first');
+                history.push('/login');
+              }
+              setMenuOpen(false);
+            }}
+            className="mobileMenuItem mobileSellMenu"
+          >
+            <SellButton />
+            <div className="sellMenuContent">
+              <SellButtonPlus />
+              <span>SELL</span>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

@@ -1,50 +1,116 @@
 .viewParentDiv {
   padding-top: 4em;
   display: flex;
+  gap: 20px;
+  align-items: flex-start;
+  padding-left: 16px;
+  padding-right: 16px;
+  box-sizing: border-box;
 }
+
 .viewParentDiv .imageShowDiv {
   padding: 16px;
-  width: 70vw;
+  width: 70%;
+  box-sizing: border-box;
 }
+
 .viewParentDiv .imageShowDiv img {
-  width: 65vw;
-  height: 85vh;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  max-height: 85vh;
+  object-fit: cover;
+  display: block;
 }
 
 .viewParentDiv .rightSection {
   padding: 16px;
   margin-top: 3em;
-  width: 30vw;
+  width: 30%;
+  box-sizing: border-box;
+}
+
+.viewParentDiv .rightSection .productDetails {
+  border: 1px solid black;
+  padding: 12px;
+  border-radius: 6px;
+  margin-bottom: 2em;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .viewParentDiv .rightSection .productDetails :first-child {
   font-weight: 700;
-  margin-bottom: 8px;
   color: #002f34;
   font-size: 34px;
   line-height: 32px;
   margin-bottom: 20px;
 }
 
-.viewParentDiv .rightSection .productDetails {
-  border: 1px solid black;
-  padding: 6px;
-  border-radius: 6px;
-  margin-bottom: 2em;
-  width: 100%;
-}
-
 .viewParentDiv .rightSection .contactDetails {
   border: 1px solid black;
-  padding: 6px;
+  padding: 12px;
   border-radius: 6px;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .viewParentDiv .rightSection .contactDetails :first-child {
   font-size: 20px;
   line-height: 24px;
-  font-weight: 700;
   color: #002f34;
   font-weight: 400;
   padding: 0;
+}
+
+/* Tablet */
+@media (max-width: 992px) {
+  .viewParentDiv {
+    flex-direction: column;
+    padding-top: 2em;
+  }
+
+  .viewParentDiv .imageShowDiv,
+  .viewParentDiv .rightSection {
+    width: 100%;
+    padding: 10px;
+  }
+
+  .viewParentDiv .rightSection {
+    margin-top: 0;
+  }
+
+  .viewParentDiv .imageShowDiv img {
+    max-height: 500px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 576px) {
+  .viewParentDiv {
+    padding-left: 10px;
+    padding-right: 10px;
+    gap: 10px;
+  }
+
+  .viewParentDiv .imageShowDiv,
+  .viewParentDiv .rightSection {
+    padding: 6px;
+  }
+
+  .viewParentDiv .rightSection .productDetails :first-child {
+    font-size: 26px;
+    line-height: 28px;
+    margin-bottom: 12px;
+  }
+
+  .viewParentDiv .rightSection .contactDetails :first-child {
+    font-size: 18px;
+    line-height: 22px;
+  }
+
+  .viewParentDiv .imageShowDiv img {
+    max-height: 300px;
+    object-fit: contain;
+  }
 }

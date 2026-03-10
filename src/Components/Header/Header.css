@@ -1,9 +1,13 @@
 .headerParentDiv {
-  padding: 10px;
+  padding: 10px 16px;
   background-color: whitesmoke;
   position: fixed;
-  width: 100vw;
+  width: 100%;
+  top: 0;
+  left: 0;
   z-index: 999;
+  box-sizing: border-box;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
 }
 
 .headerChildDiv {
@@ -11,40 +15,52 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 12px;
+  box-sizing: border-box;
+}
+
+.brandName {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  flex-shrink: 0;
 }
 
 .placeSearch {
   width: 16em;
+  min-width: 180px;
   height: 48px;
   display: flex;
   align-items: center;
-  padding: 0 8px;
+  padding: 0 10px;
   border: 2px solid #002f34;
   border-radius: 4px;
   background-color: white;
-}
-
-.placeSearch ::selection {
-  border-color: #23e5db;
-  outline-color: #23e5db;
+  box-sizing: border-box;
+  gap: 8px;
 }
 
 .placeSearch input {
-  border-color: transparent;
-  outline-color: transparent;
+  border: none;
+  outline: none;
+  width: 100%;
+  background: transparent;
+  font-size: 14px;
 }
 
 .productSearch {
-  width: 35em;
+  flex: 1;
+  min-width: 220px;
+  max-width: 700px;
   height: 48px;
   border: 2px solid #002f34;
   border-radius: 4px;
   display: flex;
   align-items: center;
-  background-color: white;
-  display: flex;
-  align-items: center;
   justify-content: space-between;
+  background-color: white;
+  box-sizing: border-box;
+  overflow: hidden;
 }
 
 .productSearch .input {
@@ -54,20 +70,25 @@
 }
 
 .productSearch .input input {
-  border-color: transparent;
-  outline-color: transparent;
+  border: none;
+  outline: none;
   width: 100%;
-  align-items: center;
+  height: 100%;
+  padding: 0 12px;
+  font-size: 14px;
+  background: transparent;
+  box-sizing: border-box;
 }
 
 .productSearch .searchAction {
   min-width: 48px;
+  width: 48px;
   height: 48px;
   position: relative;
   display: flex;
   cursor: pointer;
   background-color: #002f34;
-  border-radius: 0 4px 4px 0;
+  flex-shrink: 0;
 }
 
 .productSearch .searchAction svg {
@@ -75,50 +96,62 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  fill: white;
 }
 
 .language {
   height: 48px;
   display: flex;
   align-items: center;
+  gap: 4px;
+  flex-shrink: 0;
+  cursor: pointer;
 }
 
 .language span {
-  /* justify-content: space-between;
-  align-items: center; */
   font-size: 15px;
-  white-space: normal;
-  text-overflow: ellipsis;
-  font-weight: bolder;
-  margin-right: 5px;
+  white-space: nowrap;
+  font-weight: 700;
+  color: #002f34;
 }
 
-.language svg {
+.loginPage {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  cursor: pointer;
+  flex-shrink: 0;
 }
 
-.span {
-  text-decoration: none;
+.loginPage span {
   font-size: 16px;
-  white-space: normal;
-  text-overflow: ellipsis;
-  font-weight: bolder;
-  margin-right: 5px;
+  font-weight: 700;
+  color: #002f34;
+  white-space: nowrap;
 }
 
 .loginPage hr {
-  margin: 0;
+  margin: 2px 0 0;
   background-color: black;
   height: 2px;
+  border: none;
 }
 
-.loginPage a{
-  text-decoration: none;
+.logoutBtn {
+  font-size: 15px;
+  font-weight: 600;
+  color: #002f34;
+  cursor: pointer;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .sellMenu {
   position: relative;
   cursor: pointer;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .sellMenu .all {
@@ -136,11 +169,13 @@
 .sellMenu .right {
   fill: #3a77ff;
 }
+
 .sellMenu .sellMenuContent {
   display: flex;
   position: absolute;
   top: 50%;
   left: 50%;
+  align-items: center;
   transform: translate(-50%, -50%);
   font-size: 14px;
   font-weight: 700;
@@ -148,17 +183,169 @@
   color: #002f34;
 }
 
-/* .sellMenu .sellMenuContent svg {
-  align-items: center;
-} */
 .sellMenu .sellMenuContent span {
   margin-left: 5px;
+  white-space: nowrap;
 }
 
-@media only screen and (max-width: 700px) {
-  .placeSearch,
-  .productSearch,
-  .sellMenu {
-    display: none;
+.desktopOnly {
+  display: flex;
+}
+
+.mobileMenuBtn {
+  display: none;
+  border: none;
+  background: white;
+  border: 2px solid #002f34;
+  border-radius: 4px;
+  width: 42px;
+  height: 42px;
+  font-size: 22px;
+  cursor: pointer;
+  color: #002f34;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.mobilePlaceWrapper {
+  display: none;
+  margin-top: 10px;
+}
+
+.mobilePlaceSearch {
+  width: 100%;
+  min-width: unset;
+}
+
+.mobileMenu {
+  display: none;
+}
+
+/* Tablet */
+@media only screen and (max-width: 992px) {
+  .headerParentDiv {
+    padding: 10px 12px;
+  }
+
+  .placeSearch {
+    width: 13em;
+    min-width: 150px;
+  }
+
+  .language span,
+  .loginPage span,
+  .logoutBtn {
+    font-size: 14px;
+  }
+}
+
+/* Mobile */
+@media only screen and (max-width: 768px) {
+  .headerParentDiv {
+    padding: 10px;
+  }
+
+  .headerChildDiv {
+    gap: 8px;
+  }
+
+  .desktopOnly {
+    display: none !important;
+  }
+
+  .productSearch {
+    flex: 1;
+    min-width: 0;
+    max-width: none;
+    height: 44px;
+  }
+
+  .productSearch .searchAction {
+    width: 44px;
+    min-width: 44px;
+    height: 44px;
+  }
+
+  .mobileMenuBtn {
+    display: flex;
+  }
+
+  .mobilePlaceWrapper {
+    display: block;
+  }
+
+  .mobileMenu {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin-top: 12px;
+    background: white;
+    border: 1px solid #d8dfe0;
+    border-radius: 8px;
+    padding: 14px;
+    box-sizing: border-box;
+  }
+
+  .mobileMenuItem {
+    width: 100%;
+  }
+
+  .mobileMenu .language {
+    height: auto;
+  }
+
+  .mobileMenu .loginPage {
+    width: fit-content;
+  }
+
+  .mobileSellMenu {
+    position: relative;
+    width: fit-content;
+  }
+
+  .mobileSellMenu .sellMenuContent {
+    display: flex;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    align-items: center;
+    transform: translate(-50%, -50%);
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    color: #002f34;
+  }
+}
+
+/* Small mobile */
+@media only screen and (max-width: 480px) {
+  .headerParentDiv {
+    padding: 8px;
+  }
+
+  .productSearch {
+    height: 42px;
+  }
+
+  .productSearch .searchAction {
+    width: 42px;
+    min-width: 42px;
+    height: 42px;
+  }
+
+  .mobileMenuBtn {
+    width: 40px;
+    height: 40px;
+    font-size: 20px;
+  }
+
+  .placeSearch {
+    height: 42px;
+  }
+
+  .placeSearch input,
+  .productSearch .input input {
+    font-size: 13px;
   }
 }
