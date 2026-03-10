@@ -1,18 +1,23 @@
-import React, { useState, useEffect ,useContext} from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import Heart from '../../assets/Heart';
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "../../firebase/config";
 import { useHistory } from 'react-router-dom'
 import { AuthContext } from '../../store/FirebaseContext';
 import './Post.css';
+import { PostContext } from '../../store/postContext';
+
 
 function Posts() {
 
-  const {user} = useContext(AuthContext)
+
+  const { user } = useContext(AuthContext)
+  console.log(user)
+  const { setPostContent } = useContext(PostContext)
+
   const history = useHistory();
 
   const [products, setProducts] = useState([]);
-
   useEffect(() => {
 
     const fetchProducts = async () => {
@@ -31,6 +36,8 @@ function Posts() {
 
     fetchProducts();
 
+
+
   }, []);
 
 
@@ -44,9 +51,7 @@ function Posts() {
         <div className="cards">
 
           {products.map((item) => (
-            <div onClick={()=>{
-             user? history.push('/View'):alert("you need to login");history.push('/login')
-            }} className="card" key={item.id}>
+            <div onClick={()=>{setPostContent(item);history.push('/view')}} className="card" key={item.id}>
               <div className="favorite">
                 <Heart />
               </div>
@@ -67,7 +72,7 @@ function Posts() {
 
 
 
-          
+
 
         </div>
       </div>

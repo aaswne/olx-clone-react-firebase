@@ -4,8 +4,9 @@ import Signup from "./Components/Signup/Signup";
 import Login from "./Components/Login/Login";
 import Home from "./Pages/Home";
 import Create from "./Pages/Create";
-import View from "./Pages/ViewPost"
+import View from "./Pages/ViewPost";
 import { AuthContext } from "./store/FirebaseContext";
+import Post from "./store/postContext";
 
 function App() {
   const { user } = useContext(AuthContext);
@@ -15,15 +16,17 @@ function App() {
   }, [user]);
 
   return (
-    <Router>
-      <Switch>
-        <Route exact path="/" component={Home} />
-        <Route exact path="/signup" component={Signup} />
-        <Route exact path="/login" component={Login} />
-        <Route exact path="/Create" component={Create} />
-        <Route exact path="/View" component={View} />
-      </Switch>
-    </Router>
+    <Post>
+      <Router>
+        <Switch>
+          <Route exact path="/" component={Home} />
+          <Route exact path="/signup" component={Signup} />
+          <Route exact path="/login" component={Login} />
+          <Route exact path="/Create" component={Create} />
+          <Route exact path="/View" component={View} />
+        </Switch>
+      </Router>
+    </Post>
   );
 }
 
