@@ -12,10 +12,12 @@ function Home(props) {
       <Header />
       <Banner />
       <Posts />
+      <Posts />
+      <Posts />
       <Footer />
     </div>
   );
 }
 
 export default Home;
- 
+

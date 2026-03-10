@@ -66,6 +66,16 @@
   flex-shrink: 0;
 }
 
+
+.moreView .cards::-webkit-scrollbar {
+  display: none; 
+}
+
+.moreView .cards {
+  scrollbar-width: none; 
+  -ms-overflow-style: none; 
+}
+
 .card .favorite {
   display: flex;
   justify-content: flex-end;
