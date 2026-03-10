@@ -49,7 +49,7 @@ function Header() {
 
         <div className="desktopOnly placeSearch">
           <Search />
-          <input type="text" />
+          <input type="text" placeholder='Search city, area or locality' />
           <Arrow />
         </div>
 
